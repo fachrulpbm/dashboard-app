@@ -3,13 +3,12 @@ package view;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import net.miginfocom.swing.MigLayout;
 
 import model.MenuItem;
 import view.konten.PanelDashboard;
@@ -19,7 +18,14 @@ import view.konten.PanelSatuan;
 import view.konten.PanelSupplier;
 import view.menu.PanelMenu;
 
+import net.miginfocom.swing.MigLayout;
+
 public class FrameUtama extends JFrame {
+
+    private static final int PERCENT_WIDTH_PREFERED = 65;
+    private static final int PERCENT_HEIGHT_PREFERED = 80;
+    private static final int PERCENT_WIDTH_MIN = 35;
+    private static final int PERCENT_HEIGHT_MIN = 50;
 
     MenuItem menuDashboard;
     MenuItem menuProduk;
@@ -39,9 +45,22 @@ public class FrameUtama extends JFrame {
 
     private void initializeUI() {
         setTitle("Frame Utama");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
-        setPreferredSize(new Dimension(1280, 720));
-        setMinimumSize(new Dimension(992, 600));
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = toolkit.getScreenSize();
+        setPreferredSize(
+            new Dimension(
+                (int) screenSize.getWidth() * PERCENT_WIDTH_PREFERED/100,
+                (int) screenSize.getHeight() * PERCENT_HEIGHT_PREFERED/100
+            )
+        );
+        setMinimumSize(
+            new Dimension(
+                (int) screenSize.getWidth() * PERCENT_WIDTH_MIN/100,
+                (int) screenSize.getHeight() * PERCENT_HEIGHT_MIN/100
+            )
+        );
+        pack();
         setLocationRelativeTo(null);
         setLayout(new MigLayout(
             "fill, insets 0, gap 0",
