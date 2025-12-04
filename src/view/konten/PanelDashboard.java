@@ -1,10 +1,8 @@
 package view.konten;
 
-import java.awt.Color;
-import java.awt.Font;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -16,16 +14,16 @@ public class PanelDashboard extends JPanel {
 
     private void initializeUI() {
         setLayout(new MigLayout("fill, insets 60", "[grow]", "[grow]"));
-        setBackground(Color.WHITE);
+        setBackground(UIManager.getColor("Panel.background"));
         setOpaque(true);
 
         JLabel title = new JLabel("Panel Dashboard");
-        title.setFont(new Font("Inter", Font.BOLD, 36));                
-        title.setForeground(new Color(0, 48, 73)); // #003049
+        title.setFont(UIManager.getFont("h0.font")); // Extra large heading
+        title.setForeground(UIManager.getColor("Label.foreground"));
 
         JLabel info = new JLabel("Deskripsi panel dashboard");
-        info.setFont(new Font("Inter", Font.PLAIN, 16));
-        info.setForeground(new Color(98, 117, 138)); // #62758A
+        info.setFont(UIManager.getFont("large.font"));
+        info.setForeground(UIManager.getColor("Label.disabledForeground"));
 
         add(title, "alignx center, wrap 30");
         add(info, "alignx center");

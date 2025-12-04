@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -9,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 import model.MenuItem;
 import view.konten.PanelDashboard;
@@ -22,7 +22,7 @@ import net.miginfocom.swing.MigLayout;
 
 public class FrameUtama extends JFrame {
 
-    private static final int PERCENT_WIDTH_PREFERED = 65;
+    private static final int PERCENT_WIDTH_PREFERED = 80;
     private static final int PERCENT_HEIGHT_PREFERED = 80;
     private static final int PERCENT_WIDTH_MIN = 35;
     private static final int PERCENT_HEIGHT_MIN = 50;
@@ -86,7 +86,7 @@ public class FrameUtama extends JFrame {
         listDaftarMenuItem.add(menuMasterData);
 
         panelMenu = new PanelMenu(listDaftarMenuItem, cardLayout, panelKonten);
-        panelMenu.setBackground(new Color(245, 247, 250)); // #F5F7FA
+        panelMenu.setBackground(UIManager.getColor("Panel.background"));
     }
 
     private void setupPanelKonten() {

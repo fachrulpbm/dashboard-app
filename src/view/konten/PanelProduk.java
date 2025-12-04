@@ -1,22 +1,20 @@
 package view.konten;
 
-import java.awt.Color;
-import java.awt.Font;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 import net.miginfocom.swing.MigLayout;
 
 public class PanelProduk extends JPanel {
     public PanelProduk() {
         setLayout(new MigLayout("fill, insets 50", "[grow]", "[grow]"));
-        setBackground(Color.WHITE);
+        setBackground(UIManager.getColor("Panel.background"));
         setOpaque(true);
 
         JLabel label = new JLabel("Panel Data Produk");
-        label.setFont(new Font("Inter", Font.BOLD, 30));        
-        label.setForeground(new Color(51, 51, 51));        
+        label.setFont(UIManager.getFont("h1.font"));
+        label.setForeground(UIManager.getColor("Label.foreground"));
 
         add(label, "alignx center, aligny center");
     }

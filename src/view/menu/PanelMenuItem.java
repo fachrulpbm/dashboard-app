@@ -1,26 +1,18 @@
 package view.menu;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 import model.MenuItem;
 
 import net.miginfocom.swing.MigLayout;
 
 public class PanelMenuItem extends JPanel {
-
-    private static final Color BG_SIDEBAR = new Color(245, 247, 250); // #F5F7FA
-    private static final Color BG_HOVER = new Color(224, 230, 235); // #E0E6EB
-    private static final Color BG_SELECTED = new Color(234, 242, 235); // #EAF2EB (sage pudar)
-
-    private static final Color TEXT_NORMAL = new Color(98, 117, 138); // #62758A
-    private static final Color TEXT_HOVER = new Color(0, 48, 73); // #003049
-    private static final Color TEXT_SELECTED = new Color(131, 188, 160); // #83BCA0 (sage)
 
     private final String contentKey;
     private boolean isSubMenu;
@@ -47,26 +39,28 @@ public class PanelMenuItem extends JPanel {
     private void initializeUI(MenuItem item) {
         panelContainerSubMenu = new JPanel(
             new MigLayout(
-                "fillx, insets 10, gap 0, hidemode 3", 
+                "fillx, insets 0, gap 0, hidemode 3", 
                 "[grow]", 
                 ""
             )
         );
 
-        panelContainerSubMenu.setBackground(Color.WHITE);
+        panelContainerSubMenu.setBackground(getBackgroundNormal());
         panelContainerSubMenu.setOpaque(true);
 
         setLayout(new MigLayout("fill, insets 0, gap 0", "[grow]", "[]"));        
-        setBackground(isSubMenu ? Color.WHITE : BG_SIDEBAR);
+        setBackground(getBackgroundNormal());
 
         labelMenu = new JLabel();
         labelMenu.setText(item.getJudul());
-        labelMenu.setFont(new Font("Inter", isSubMenu ? Font.PLAIN : Font.BOLD, 15));        
-        labelMenu.setForeground(TEXT_NORMAL);
+
+        labelMenu.setForeground(getTextNormal());
 
         if (isSubMenu) {
+            labelMenu.setFont(UIManager.getFont("defaultFont"));
             add(labelMenu, "gapleft 10, grow, pushy, wrap");
         } else {
+            labelMenu.setFont(UIManager.getFont("h4.font"));
             add(labelMenu, "gapleft 24, grow, pushy, wrap");
         }    
 
@@ -81,16 +75,14 @@ public class PanelMenuItem extends JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
                 if (!selected){
-                    setBackground(BG_HOVER);
-                    labelMenu.setForeground(TEXT_HOVER);
+                    setBackground(getBackgroundHover());
                 }                    
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 if (!selected){
-                    setBackground(isSubMenu ? Color.WHITE : BG_SIDEBAR);
-                    labelMenu.setForeground(TEXT_NORMAL);
+                    setBackground(getBackgroundNormal());
                 }
             }
 
@@ -109,8 +101,8 @@ public class PanelMenuItem extends JPanel {
 
     public void setSelectedByParent(boolean selected) {
         this.selected = selected;
-        setBackground(selected ? BG_SELECTED : (isSubMenu ? Color.WHITE : BG_SIDEBAR));        
-        labelMenu.setForeground(selected ? TEXT_SELECTED : TEXT_NORMAL);
+        setBackground(selected ? getBackgroundSelected() : getBackgroundNormal());        
+        labelMenu.setForeground(selected ? getTextSelected() : getTextNormal());
     }
 
     public String getContentKey() {
@@ -119,6 +111,28 @@ public class PanelMenuItem extends JPanel {
 
     public JPanel getPanelCountainerSubMenu() {
         return panelContainerSubMenu;
+    }
+
+    private Color getBackgroundNormal() {
+        return UIManager.getColor("Panel.background");
+    }
+    
+    private Color getBackgroundHover() {
+        Color hover = UIManager.getColor("List.hoverBackground");
+        return hover != null ? hover : UIManager.getColor("List.selectionInactiveBackground");
+    }
+    
+    private Color getBackgroundSelected() {
+        return UIManager.getColor("List.selectionBackground");
+    }
+    
+    private Color getTextNormal() {
+        return UIManager.getColor("Label.foreground");
+    }
+    
+    private Color getTextSelected() {
+        Color selected = UIManager.getColor("List.selectionForeground");
+        return selected != null ? selected : UIManager.getColor("Label.foreground");
     }
     
 }

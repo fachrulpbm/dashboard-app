@@ -1,14 +1,13 @@
 package view.menu;
 
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.UIManager;
 
 import model.MenuItem;
 
@@ -37,23 +36,23 @@ public class PanelMenu extends JPanel {
     private void initializeUI() {
         setLayout(new MigLayout("fillx, wrap 1, insets 0, gap 0, hidemode 3", "[grow]", ""));                    
         setPreferredSize(new Dimension(280, 0));        
-        setBackground(new Color(245, 247, 250)); // #F5F7FA
+        setBackground(UIManager.getColor("Panel.background"));
         
         panelJudul = new JPanel(new MigLayout("fillx, h 60!, gap 0, insets 10"));
         labelJudul = new JLabel("Judul Aplikasi");
-        labelJudul.setFont(new Font("Inter", Font.BOLD, 20));        
-        labelJudul.setForeground(new Color(0, 48, 73)); // #003049
+        labelJudul.setFont(UIManager.getFont("h2.font")); // FlatLaf heading font
+        labelJudul.setForeground(UIManager.getColor("Label.foreground"));
         panelJudul.add(labelJudul, "center, pushy");
         panelJudul.setBackground(getBackground());
         add(panelJudul, "grow");
         
-        add(new JSeparator(), "growx, gaptop 5, gapbottom 5");
+        add(new JSeparator(), "growx, gaptop 5, gapbottom 5, gapleft 10, gapright 10");
     }
 
     private void buildMenu(List<MenuItem> listDaftarMenuItem) {
         for (MenuItem menu : listDaftarMenuItem) {
             labelMenuItem = new JLabel(menu.getJudul());
-            labelMenuItem.setFont(new Font("Arial", Font.BOLD, 14));
+            labelMenuItem.setFont(UIManager.getFont("h4.font"));
 
             /** Panel Menu Item */
             panelMenuItem = new PanelMenuItem(menu, this);            
@@ -62,11 +61,11 @@ public class PanelMenu extends JPanel {
             /** Panel (Sub) Menu Item */
             if (menu.hasSubMenuItem()) {
                 panelSubMenu = panelMenuItem.getPanelCountainerSubMenu();
-                add(panelSubMenu, "growx, wrap, gapleft 24, gapright 10, gaptop 10, gapbottom 10");                
+                add(panelSubMenu, "growx, wrap, gapleft 24, gapright 10, gaptop 5, gapbottom 0");                
                 panelSubMenu.setVisible(false);
             }
 
-            add(new JSeparator(), "growx, gaptop 5, gapbottom 5");  
+            add(new JSeparator(), "growx, gaptop 5, gapbottom 5, gapleft 10, gapright 10");  
             
             if ("Dashboard".equals(menu.getJudul())) {
                 panelDashboard = panelMenuItem;

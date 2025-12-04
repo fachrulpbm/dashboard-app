@@ -11,7 +11,7 @@ public class MenuItem {
     public MenuItem(String judul, String keyCardLayout) {
         this.judul = judul;
         this.keyCardLayout = keyCardLayout;
-        this.listSubMenuItem = new ArrayList<>();        
+        this.listSubMenuItem = new ArrayList<>();
     }
 
     public MenuItem(String judul) {
