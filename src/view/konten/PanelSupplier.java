@@ -13,7 +13,7 @@ public class PanelSupplier extends JPanel {
         setOpaque(true);
 
         JLabel label = new JLabel("Panel Supplier");
-        label.setFont(UIManager.getFont("h1.font"));
+        label.setFont(UIManager.getFont("h3.font"));
         label.setForeground(UIManager.getColor("Label.foreground"));
 
         add(label, "alignx center, aligny center");        

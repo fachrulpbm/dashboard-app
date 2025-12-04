@@ -18,7 +18,7 @@ public class PanelDashboard extends JPanel {
         setOpaque(true);
 
         JLabel title = new JLabel("Panel Dashboard");
-        title.setFont(UIManager.getFont("h0.font")); // Extra large heading
+        title.setFont(UIManager.getFont("h3.font"));
         title.setForeground(UIManager.getColor("Label.foreground"));
 
         JLabel info = new JLabel("Deskripsi panel dashboard");

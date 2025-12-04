@@ -20,7 +20,7 @@ public class PanelMenu extends JPanel {
     private JPanel panelSubMenu;
     private JPanel panelJudul;
     private JLabel labelJudul;
-    private JLabel labelMenuItem;
+    // private JLabel labelMenuItem;
     private PanelMenuItem panelMenuItem;
     private PanelMenuItem panelDashboard = null;
 
@@ -40,7 +40,7 @@ public class PanelMenu extends JPanel {
         
         panelJudul = new JPanel(new MigLayout("fillx, h 60!, gap 0, insets 10"));
         labelJudul = new JLabel("Judul Aplikasi");
-        labelJudul.setFont(UIManager.getFont("h2.font")); // FlatLaf heading font
+        labelJudul.setFont(UIManager.getFont("h3.font"));
         labelJudul.setForeground(UIManager.getColor("Label.foreground"));
         panelJudul.add(labelJudul, "center, pushy");
         panelJudul.setBackground(getBackground());
@@ -51,8 +51,6 @@ public class PanelMenu extends JPanel {
 
     private void buildMenu(List<MenuItem> listDaftarMenuItem) {
         for (MenuItem menu : listDaftarMenuItem) {
-            labelMenuItem = new JLabel(menu.getJudul());
-            labelMenuItem.setFont(UIManager.getFont("h4.font"));
 
             /** Panel Menu Item */
             panelMenuItem = new PanelMenuItem(menu, this);            

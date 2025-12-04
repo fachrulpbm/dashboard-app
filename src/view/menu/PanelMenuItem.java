@@ -57,7 +57,7 @@ public class PanelMenuItem extends JPanel {
         labelMenu.setForeground(getTextNormal());
 
         if (isSubMenu) {
-            labelMenu.setFont(UIManager.getFont("defaultFont"));
+            labelMenu.setFont(UIManager.getFont("medium.font"));
             add(labelMenu, "gapleft 10, grow, pushy, wrap");
         } else {
             labelMenu.setFont(UIManager.getFont("h4.font"));
@@ -66,7 +66,7 @@ public class PanelMenuItem extends JPanel {
 
         for (MenuItem sub : item.getListSubMenuItem()) {
             panelSubMenuItem = new PanelMenuItem(sub, panelMenu, true);
-            panelContainerSubMenu.add(panelSubMenuItem, "growx, h 42!, wrap");
+            panelContainerSubMenu.add(panelSubMenuItem, "growx, h 37!, wrap");
         }        
     }
 
